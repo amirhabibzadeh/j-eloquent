@@ -4,21 +4,6 @@ use Illuminate\Support\Str;
 use Miladr\Jalali\jDate;
 
 trait PersianDateTrait {
-    
-    /**
-     * Prefix for getting jalali dates "{prefix}_{date_attribute}_{suffix}
-     *
-     * @var string
-     */
-    protected  $jalaliPrefix = "jalali_";
-
-    /**
-     * Date format for jalali dates
-     *
-     * @var string
-     */
-    protected $jalaliDateFormat = 'y/m/d';
-
 
     /**
      * Convert Gregorian date to Jalali date
@@ -81,7 +66,11 @@ trait PersianDateTrait {
      */
     protected function getJalaliPrefix()
     {
-        return $this->jalaliPrefix;
+        if (isset($this->jalaliPrefix)) {
+            return $this->jalaliPrefix;
+        }
+
+        return 'jalali_';
     }
 
     /**
@@ -91,7 +80,11 @@ trait PersianDateTrait {
      */
     protected function getJalaliFormat()
     {
-        return $this->jalaliDateFormat;
+        if (isset($this->jalaliDateFormat)) {
+            return $this->jalaliDateFormat;
+        }
+
+        return 'y/m/d';
     }
 
     /**
